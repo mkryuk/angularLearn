@@ -115,17 +115,17 @@ myApp.directive("superman",function(){
 });
 
 myApp.directive('enter',function(){
-    return function(scope,element){
+    return function(scope,element,attrs){
         element.bind('mouseenter',function(){
-            console.log('i`m inside of you! ');
+            element.addClass(attrs.enter);
         });
     }
 });
 
 myApp.directive('leave',function(){
-    return function(scope,element){
+    return function(scope,element,attrs){
         element.bind('mouseleave',function(){
-            console.log('i`m outside of you! ');
+            element.removeClass(attrs.enter);
         });
     }
 });
