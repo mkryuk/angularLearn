@@ -1,5 +1,6 @@
 var myApp = angular.module("myApp",[]);
 
+//angular service
 myApp.factory('Data',function(){
     return {message:"i'm data from a service"};
 });
@@ -86,11 +87,14 @@ myApp.filter('search',function(Avengers){
     }
 });
 
-//Controller
-function FirstCtrl($scope, Data){
-    $scope.data = Data;
-}
 
+//Controller
+//function FirstCtrl($scope, Data){
+//    $scope.data = Data;
+//}
+myApp.controller('FirstCtrl',['$scope','Data', function($scope, Data){
+    $scope.data = Data;
+}]);
 
 function SecondCtrl($scope, Data){
     $scope.data = Data;
@@ -107,5 +111,21 @@ myApp.directive("superman",function(){
     return {
         restrict: "E",
         template: "<div>Here I am to save the day</div>"
+    }
+});
+
+myApp.directive('enter',function(){
+    return function(scope,element){
+        element.bind('mouseenter',function(){
+            console.log('i`m inside of you! ');
+        });
+    }
+});
+
+myApp.directive('leave',function(){
+    return function(scope,element){
+        element.bind('mouseleave',function(){
+            console.log('i`m outside of you! ');
+        });
     }
 });
