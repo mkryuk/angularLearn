@@ -87,11 +87,6 @@ myApp.filter('search',function(Avengers){
     }
 });
 
-
-//Controller
-//function FirstCtrl($scope, Data){
-//    $scope.data = Data;
-//}
 myApp.controller('FirstCtrl',['$scope','Data', function($scope, Data){
     $scope.data = Data;
 }]);
@@ -102,6 +97,11 @@ function SecondCtrl($scope, Data){
         return message.split("").reverse().join("");
     };
 }
+
+//Controller
+//function FirstCtrl($scope, Data){
+//    $scope.data = Data;
+//}
 
 function AvengersCtrl($scope,Avengers){
     $scope.avangers = Avengers;
