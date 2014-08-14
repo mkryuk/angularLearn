@@ -1,2 +1,4 @@
-<input type="text" ng-model="value"/>
-<div ng-click="dial({message:value})" class="btn-primary">Call</div>
+<div class="panel">Number: {{number}} Network:<select ng-model="network" ng-options="net for net in networks"/>
+    <input type="text" ng-model="value">
+    <div class="btn-primary" ng-click="makeCall({number: number, message: value})">Call home!</div>
+</div>
