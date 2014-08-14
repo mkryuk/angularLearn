@@ -8,7 +8,7 @@ myApp.controller("appCtrl",function($scope){
 myApp.directive("drink",function(){
     return {
         scope:{
-            flavor:"@"
+            flavor:"="
         },
         templateUrl:"tmplt.html"
     };
