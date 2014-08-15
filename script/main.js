@@ -1,24 +1,13 @@
 var app = angular.module("phoneApp", []);
 
 app.controller("AppCtrl", function($scope) {
-    $scope.leaveVoicemail = function(number, message) {
-        alert("Number: " + number + " said: " + message)
-    }
-})
 
-app.directive("phone", function() {
+});
+
+app.directive("panel", function() {
     return {
         restrict: "E",
-        scope: {
-            number: "@",
-            network: "=",
-            makeCall: "&"
-        },
-        templateUrl:"tmplt.html",
-
-        link: function(scope) {
-            scope.networks = ["Verizon", "AT&T", "Sprint"];
-            scope.network = scope.networks[0]
-        }
+        transclude: true,
+        templateUrl:"tmplt.html"
     }
 })
