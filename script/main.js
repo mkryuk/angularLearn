@@ -1,13 +1,18 @@
-var app = angular.module("phoneApp", []);
+var app = angular.module("app", []);
 
-app.controller("AppCtrl", function($scope) {
-
-});
-
-app.directive("panel", function() {
+app.directive("zippy",function(){
     return {
-        restrict: "E",
-        transclude: true,
-        templateUrl:"tmplt.html"
-    }
-})
+        restrict:"E",
+        transclude:true,
+        templateUrl:"tmplt.html",
+        scope:{
+            title:"@"
+        },
+        link:function(scope){
+            scope.isHidden = true;
+            scope.toggleContent = function(){
+                scope.isHidden = !scope.isHidden;
+            };
+        }
+    };
+});

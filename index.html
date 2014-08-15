@@ -7,12 +7,13 @@
 </head>
 <body>
 
-<div ng-app="phoneApp">
-    <div ng-controller="AppCtrl">
-        <panel>
-            <div class="btn-primary">Click me</div>
-        </panel>
-    </div>
+<div ng-app="app">
+    <input type="text" ng-model="model.title"/>
+    <input type="text" ng-model="model.content"/>
+    <zippy title="{{model.title}}">
+        The content is: {{model.content}}
+    </zippy>
+
 </div>
 
 <script type="text/javascript" src="script/angular.min.js"></script>
