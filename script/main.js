@@ -1,26 +1,22 @@
-var app = angular.module("myApp",[]);
+var app = angular.module("app", []);
 
-app.directive("dumbPassword",function(){
-    var validElement = angular.element("<div>{{model.input}}</div>");
-    this.link = function(scope, element){
-        scope.$watch("model.input",function(value)
-        {
-            if(value === 'password')
-                validElement.toggleClass('alert-warning');
-            else
-                if(validElement.hasClass('alert-warning'))
-                    validElement.removeClass('alert-warning');
-        })
-    };
+app.run(function($templateCache){
+    $templateCache.put("zippy.html","<div class='panel'' ng-click='toggleContent()'>{{title}}<div ng-transclude ng-hide='isHidden'></div></div>");
+});
 
+app.directive("zippy",function(){
     return {
-        restrict:'E',
-        replace:true,
-        templateUrl:"tmplt.html",
-        compile:function(telem){
-            telem.append(validElement);
-            return link;
+        restrict:"E",
+        transclude:true,
+        templateUrl:"zippy.html",
+        scope:{
+            title:"@"
+        },
+        link:function(scope){
+            scope.isHidden = true;
+            scope.toggleContent = function(){
+                scope.isHidden = !scope.isHidden;
+            };
         }
-
     };
 });
