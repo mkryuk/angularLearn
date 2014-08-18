@@ -1,18 +1,26 @@
-var app = angular.module("app", []);
+var app = angular.module("myApp",[]);
 
-app.directive("zippy",function(){
+app.directive("dumbPassword",function(){
+    var validElement = angular.element("<div>{{model.input}}</div>");
+    this.link = function(scope, element){
+        scope.$watch("model.input",function(value)
+        {
+            if(value === 'password')
+                validElement.toggleClass('alert-warning');
+            else
+                if(validElement.hasClass('alert-warning'))
+                    validElement.removeClass('alert-warning');
+        })
+    };
+
     return {
-        restrict:"E",
-        transclude:true,
+        restrict:'E',
+        replace:true,
         templateUrl:"tmplt.html",
-        scope:{
-            title:"@"
-        },
-        link:function(scope){
-            scope.isHidden = true;
-            scope.toggleContent = function(){
-                scope.isHidden = !scope.isHidden;
-            };
+        compile:function(telem){
+            telem.append(validElement);
+            return link;
         }
+
     };
 });
