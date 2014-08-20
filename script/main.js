@@ -1,22 +1,16 @@
-var app = angular.module("app", []);
+var app = angular.module("app",["ngRoute"]);
 
-app.run(function($templateCache){
-    $templateCache.put("zippy.html","<div class='panel'' ng-click='toggleContent()'>{{title}}<div ng-transclude ng-hide='isHidden'></div></div>");
+app.config(function($routeProvider){
+    $routeProvider.when('/',
+        {
+            templateUrl:'app.html',
+            controller:"AppCtrl"
+        }
+    )
 });
 
-app.directive("zippy",function(){
-    return {
-        restrict:"E",
-        transclude:true,
-        templateUrl:"zippy.html",
-        scope:{
-            title:"@"
-        },
-        link:function(scope){
-            scope.isHidden = true;
-            scope.toggleContent = function(){
-                scope.isHidden = !scope.isHidden;
-            };
-        }
-    };
+app.controller("AppCtrl", function($scope){
+    $scope.model = {
+        message:"This is my app!!!"
+    }
 });
