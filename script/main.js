@@ -1,23 +1,19 @@
 var app = angular.module("app", ["ngRoute"]);
 
-app.config(function ($routeProvider) {
+app.config(function($routeProvider){
     $routeProvider
-        .when('/',
-        {
-            templateUrl: 'app.html',
-            controller: "AppCtrl"
+        .when('/map/:country/:state/:city',{
+            templateUrl:"app.html",
+            controller:"AppCtrl"
         })
-        .when('/someText',
-        {
-            template:"some text "
-        })
-        .otherwise({
-            template:"404 NOT FOUND"
-        })
+
 });
 
-app.controller("AppCtrl", function ($scope) {
+app.controller("AppCtrl", function ($scope, $routeParams) {
     $scope.model = {
-        message: "This is my app!!!"
+        message: "Address: "+
+            $routeParams.country + ", " +
+            $routeParams.state + ", " +
+            $routeParams.city + "."
     }
 });
