@@ -1,23 +1,14 @@
 var app = angular.module("app", []);
 
-app.provider("game", function(){
-    var type;
-    return{
-        setType:function(value)
-        {
-            type = value;
-        },
-        $get:function(){
-            return{
-                title:type+" Craft 2"}
-        }
-    };
-});
+app.factory("game", function() {
+    return {
+        title: "StarCraft"
+    }
+})
 
-app.config(function(gameProvider){
-    gameProvider.setType("War");
-});
-
-app.controller("AppCtrl", function($scope, game){
-    $scope.title = game.title;
+app.controller("AppCtrl", function($scope, $injector) {
+    $injector.invoke(function(game) {
+        $scope.title = game.title;
+        alert(game.title)
+    })
 });
