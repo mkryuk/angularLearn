@@ -1,37 +1,45 @@
 var app = angular.module("app", ["ngRoute"]);
 
-app.config(function($routeProvider){
-    $routeProvider.when("/", {
-        templateUrl:"app.html",
-        controller:"ViewCtrl",
-        resolve:{
-            loadData:viewCtrl.loadData
-        }
-    })
+app.config(function($routeProvider, $locationProvider){
+    $routeProvider
+        .when("/", {
+            templateUrl:"app.html",
+            controller:"ViewCtrl"
+        })
+        .when("/new",{
+            templateUrl:"new.html",
+            controller:"NewCtrl",
+            resolve:{
+                loadData:viewCtrl.loadData
+            }
+        })
 });
 
-var viewCtrl = app.controller("ViewCtrl", function($scope, $route){
-    //console.log($route);
-    $scope.model = {message: "I'm a great app!"}
+app.controller("AppCtrl",function($scope,$rootScope, $route, $location){
+    $rootScope.$on("$routeChangeStart", function(event, current, previous, resolve){
+        console.log($scope,$rootScope, $route, $location);
+    });
+
+    $rootScope.$on("$routeChangeSuccess", function(event, current, previous, resolve){
+        console.log($scope,$rootScope, $route, $location);
+    });
+});
+
+var viewCtrl = app.controller("ViewCtrl", function($scope, $route, $location){
+    $scope.changeRoute = function(){
+        console.log($scope);
+        $location.path("/new");
+    };
+});
+
+app.controller("NewCtrl", function($scope, loadData, $template){
+    console.log($scope, loadData, $template);
 });
 
 viewCtrl.loadData = function($q, $timeout){
     var defer = $q.defer();
     $timeout(function(){
-        //changing this to defer.resolve("Your network is down"); it'l be no error
-        defer.reject("Your network is down");
-    }, 500);
+        defer.resolve({message:"success"});
+    }, 2000);
     return defer.promise;
 };
-
-app.directive("error", function($rootScope){
-   return {
-       restrict:"E",
-       template:"<div class='alert-danger' ng-show='isError'>Error!!!</div>",
-       link:function(scope){
-           $rootScope.$on("$routeChangeError", function(event, current, previous, rejection){
-               scope.isError = true;
-           });
-       }
-   }
-});
