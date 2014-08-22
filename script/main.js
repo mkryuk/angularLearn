@@ -1,36 +1,30 @@
 var app = angular.module("app", ["ngRoute"]);
 
-
 app.config(function($routeProvider){
-    $routeProvider
-        .when("/",{
-            templateUrl:"app.html",
-            controller:"AppCtrl",
-            resolve:{
-                loadData:appCtrl.loadData,
-                prepData:appCtrl.prepData
-            }
-        })
+    $routeProvider.when("/", {
+        templateUrl:"app.html",
+        controller:"ViewCtrl",
+        resolve:{
+            loadData:viewCtrl.loadData
+        }
+    })
 });
 
-var appCtrl = app.controller("AppCtrl", function ($scope, $route) {
-    console.log($route);
-    $scope.model = {
-        message: "This is my app"
-    }
+app.controller("AppCtrl", function($rootScope){
+    $rootScope.$on("$routeChangeError", function(event, current, previous, rejection){
+        console.log(rejection);
+    });
 });
 
-appCtrl.loadData = function($q, $timeout){
+var viewCtrl = app.controller("ViewCtrl", function($scope, $route){
+    //console.log($route);
+    $scope.model = {message: "I'm a great app!"}
+});
+
+viewCtrl.loadData = function($q, $timeout){
     var defer = $q.defer();
     $timeout(function(){
-        defer.resolve("loadData");
-    }, 2000);
-    return defer.promise;
-};
-appCtrl.prepData = function($q, $timeout){
-    var defer = $q.defer();
-    $timeout(function(){
-        defer.resolve("prepData");
-    }, 2000);
+        defer.reject("Your network is down");
+    }, 500);
     return defer.promise;
 };
