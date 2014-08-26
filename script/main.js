@@ -1,25 +1,16 @@
 var app = angular.module("app", []);
 
-app.directive("clock",function(){
-    return{
-        restrict:"E",
-        scope:{
-            timezone:"@"
-        },
-        template:"<div>12:00pm {{timezone}}</div>"
-    };
+app.config(function($logProvider){
+    //if we change it to false log will be disabled
+    $logProvider.debugEnabled(true);
 });
 
-app.directive("panel",function(){
-    return{
-        restrict:"E",
-        transclude:true,
-        scope:{
-            title:"@"
-        },
-        template:"<div style='border: 3px solid #000000'>" +
-            "<div class='alert-danger'>{{title}}</div>" +
-            "<div ng-transclude></div>" +
-            "</div>"
-    };
+app.run(function($rootScope, $log){
+    $rootScope.$log = $log;
+});
+
+app.controller("appCtrl", function($scope){
+    $scope.myFunc = function(ev){
+
+    }
 });

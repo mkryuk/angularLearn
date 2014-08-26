@@ -7,10 +7,13 @@
 </head>
 <body ng-app="app">
 
-<clock title="MST"></clock>
-<panel title="I'm a title">
-    <clock title="PST"></clock>
-</panel>
+<div
+        class="btn-primary"
+        ng-repeat="item in 'somewords'.split('') track by $index"
+        ng-click="$log.debug($event)">
+    {{$index+1}}.{{item}}
+    {{ev.pageX}}
+</div>
 
 <script type="text/javascript" src="script/angular.min.js"></script>
 <script type="text/javascript" src="script/angular-route.js"></script>
