@@ -7,12 +7,8 @@
 </head>
 <body ng-app="app">
 
-<div
-        class="btn-primary"
-        ng-repeat="item in 'somewords'.split('') track by $index"
-        ng-click="$log.debug($event)">
-    {{$index+1}}.{{item}}
-    {{ev.pageX}}
+<div ng-controller="roomCtrl as room">
+    <div class="btn-primary" ng-click="room.openDoor()">Open</div>
 </div>
 
 <script type="text/javascript" src="script/angular.min.js"></script>
