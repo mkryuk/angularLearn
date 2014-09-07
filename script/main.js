@@ -1,41 +1,8 @@
-var app = angular.module("app", ["ui.router"]);
+var app = angular.module("app", []);
 
-app.config(function($stateProvider, $urlRouterProvider){
-    $stateProvider
-        .state('home', {
-            url:'/home',
-            templateUrl:'list.html'
-        })
-        .state('list',{
-            url:'/list',
-            templateUrl:'list.html',
-            controller:'ListCtrl'
-        })
-        .state('list.item',{
-        url:'/:item',
-            templateUrl:'list.item.html',
-            controller:function($scope, $stateParams){
-                $scope.item = $stateParams.item;
-            }
-
-    });
+app.run(function($rootScope){
+    $rootScope.random = Math.random();
 });
 
-app.controller('ListCtrl',function($scope){
-    $scope.shoppingList = [
-        {name:'Milk'},
-        {name: 'Eggs'},
-        {name: 'Bread'},
-        {name: 'Cheese'},
-        {name: 'Ham'}
-    ];
-
-    $scope.selectItem = function(selectedItem){
-        _($scope.shoppingList).each(function(item){
-            item.selected = false;
-            if(selectedItem === item){
-                selectedItem.selected = true;
-            }
-        });
-    };
-});
+angular.bootstrap(document.getElementById("container"), ["app"]);
+angular.bootstrap(document.getElementById("container2"), ["app"]);
