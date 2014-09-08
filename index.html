@@ -4,25 +4,14 @@
     <meta charset="utf-8">
     <title>Egghead Videos</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" hzref="styles.css"/>
 </head>
-<body ng-app="app">
-<div class="container">
-    <h4>
-        A brief introduction to <strong class="text-danger">ui-router</strong>
-        <span class="text-muted">(v0.2.0)</span>
-    </h4>
-    <div>
-        <ul class="nav nav-pills">
-            <li><a href="#/home">Home</a></li>
-            <li><a href="#/list">Shopping List</a></li>
-        </ul>
-    </div>
-    <div ui-view></div>
+<body>
+<div id="container" class="app">
+   {{app.random}}
 </div>
 
 <script type="text/javascript" src="script/angular.min.js"></script>
-<script type="text/javascript" src="script/angular-route.js"></script>
 <script type="text/javascript" src="script/main.js"></script>
 </body>
 </html>
