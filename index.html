@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
+<!doctype html>
+<html lang="ru">
+<head>
     <meta charset="utf-8">
-    <title>Egghead Videos</title>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" hzref="styles.css"/>
+    <title>Admin page - Questions</title>
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-route.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <link rel="stylesheet" href="style/appstyle.css"/>
 </head>
-<body>
-<div id="container" class="app">
-   {{app.random}}
-</div>
-
-<script type="text/javascript" src="script/angular.min.js"></script>
-<script type="text/javascript" src="script/main.js"></script>
+<body ng-app="app">
+<div ng-view></div>
 </body>
 </html>

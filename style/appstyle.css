@@ -1,0 +1,13 @@
+.monospace{
+    font-family: monospace;
+    text-align: justify;
+    border: 0;
+}
+
+.even{
+    background-color: darkgray;
+}
+
+.odd{
+    background-color: gainsboro;
+}

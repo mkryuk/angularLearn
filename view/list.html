@@ -1,0 +1,19 @@
+<form ng-submit="applyFilter()">
+    <input type="text" ng-model="find"/>
+    <input type="submit" value="Find"/>
+</form>
+
+<table>
+    <thead>
+    <th><a href="" ng-click="sortedField='Number'; reverse =! reverse">Number</a></th>
+    <th>GivenName</th>
+    <th>Surname</th>
+    <th>Username</th>
+    </thead>
+    <tr ng-repeat="person in dataList | filter:findFilter | orderBy:sortedField:reverse" ng-class-even="'even'" ng-class-odd="'odd'">
+        <td><a href="#/{{person.Number}}">{{person.Number}}</a></td>
+        <td>{{person.GivenName}}</td>
+        <td>{{person.Surname}}</td>
+        <td>{{person.Username}}</td>
+    </tr>
+</table>
