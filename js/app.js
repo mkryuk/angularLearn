@@ -1,5 +1,5 @@
 
-var app = angular.module("app",['ngRoute','peopleData']);
+var app = angular.module("app",['ngRoute','peopleData','filtersModule']);
 
 app.config(function ($routeProvider) {
     $routeProvider
